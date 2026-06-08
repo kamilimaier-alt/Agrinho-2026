@@ -1,29 +1,69 @@
 const alimentosPorMes = {
-  1: ["Abacaxi", "Manga", "Cenoura", "Repolho"],
-  2: ["Mamão", "Abacate", "Beterraba", "Alface"],
-  3: ["Banana", "Couve", "Tomate", "Melancia"],
-  4: ["Laranja", "Pera", "Chuchu", "Couve-flor"],
-  5: ["Limão", "Morango", "Cenoura", "Rúcula"],
-  6: ["Ameixa", "Cebola", "Alface", "Pepino"],
-  7: ["Caqui", "Beterraba", "Tomate", "Espinafre"],
-  8: ["Maçã", "Abóbora", "Couve", "Rabanete"],
-  9: ["Uva", "Pimentão", "Alface", "Abobrinha"],
-  10: ["Laranja", "Banana", "Cenoura", "Repolho"],
-  11: ["Mamão", "Abacate", "Cebola", "Tomate"],
-  12: ["Manga", "Melancia", "Alface", "Chuchu"]
+
+5:[
+{
+nome:"Limão",
+imagem:"https://images.unsplash.com/photo-1590502593747-42a996133562",
+tipo:"Fruta da estação"
+},
+
+{
+nome:"Morango",
+imagem:"https://images.unsplash.com/photo-1464965911861-746a04b4bca6",
+tipo:"Fruta da estação"
+},
+
+{
+nome:"Cenoura",
+imagem:"https://images.unsplash.com/photo-1447175008436-054170c2e979",
+tipo:"Legume da estação"
+},
+
+{
+nome:"Rúcula",
+imagem:"https://images.unsplash.com/photo-1518977676601-b53f82aba655",
+tipo:"Verdura da estação"
+}
+]
+
 };
 
-const btnMostrar = document.getElementById("btnMostrar");
-const listaAlimentos = document.getElementById("listaAlimentos");
+const btn = document.getElementById("btnMostrar");
 
-btnMostrar.addEventListener("click", () => {
-  const mes = document.getElementById("mes").value;
-  const alimentos = alimentosPorMes[mes];
+btn.addEventListener("click",()=>{
 
-  listaAlimentos.innerHTML = "";
-  alimentos.forEach(alimento => {
-    const li = document.createElement("li");
-    li.textContent = alimento;
-    listaAlimentos.appendChild(li);
-  });
+const mes = document.getElementById("mes").value;
+
+const lista = document.getElementById("listaAlimentos");
+
+lista.innerHTML="";
+
+const alimentos = alimentosPorMes[mes] || [];
+
+alimentos.forEach(item=>{
+
+lista.innerHTML += `
+
+<div class="card">
+
+<img src="${item.imagem}" alt="${item.nome}">
+
+<div class="card-content">
+
+<h3>${item.nome}</h3>
+
+<p>${item.tipo}</p>
+
+<span class="badge">
+🌱 Sustentável
+</span>
+
+</div>
+
+</div>
+
+`;
+
+});
+
 });
